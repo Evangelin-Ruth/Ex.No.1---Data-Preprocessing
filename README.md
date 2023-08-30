@@ -32,10 +32,78 @@ Normalizing the data
 Splitting the data into test and train
 
 ## PROGRAM:
-/Write your code here/
+```
+# Importing Libraries
+import pandas as pd
+import io
+from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.model_selection import train_test_split
 
+#Read the dataset
+df=pd.read_csv('Churn_Modelling.csv')
+df
+
+#Checking for null values
+df.isnull().sum()
+
+#Checking for dulpicated values
+df.duplicated()
+
+#Dropping unwanted columns
+df.drop('RowNumber',axis=1,inplace=True)
+df.drop('CustomerId',axis=1,inplace=True)
+df.drop('Age',axis=1,inplace=True)
+df.drop('Gender',axis=1,inplace=True)
+df.drop('Surname',axis=1,inplace=True)
+df.drop('Geography',axis=1,inplace=True)
+df
+
+#Normalising using MinMaxScaler
+ms=MinMaxScaler()
+df2=pd.DataFrame(ms.fit_transform(df))
+df2
+
+#Splitting the dataset - x
+X=df2.iloc[:,:-1].values
+X
+
+#Splitting the dataset - y
+y=df2.iloc[:,-1].values
+y
+
+# Training the dataset
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+print(X_train)
+print("X_train: ",len(X_train))
+print(X_test)
+print("Size of X_test: ",len(X_test))
+```
 ## OUTPUT:
-/ Show the result/
+### Read Dataset
+![image](https://github.com/Evangelin-Ruth/Ex.No.1---Data-Preprocessing/assets/94219798/e88db9d6-a7b6-4505-832d-2d54236c1eca)
+
+### Checking for Null values
+![image](https://github.com/Evangelin-Ruth/Ex.No.1---Data-Preprocessing/assets/94219798/4540d14b-ddd0-495d-b962-7b7651017def)
+
+### Checking for duplicated values
+![image](https://github.com/Evangelin-Ruth/Ex.No.1---Data-Preprocessing/assets/94219798/714c9721-980e-4d95-8ad0-e756cc7f1938)
+
+### Dropping off unwanted values
+![image](https://github.com/Evangelin-Ruth/Ex.No.1---Data-Preprocessing/assets/94219798/06749fee-2d4f-4f3a-9009-ae0663c0cb94)
+
+### Normalised data using MinMaxScaler
+![image](https://github.com/Evangelin-Ruth/Ex.No.1---Data-Preprocessing/assets/94219798/81db5ed4-87c2-4924-b7c7-049d9adfbdcd)
+
+### Split values of X dataset
+![image](https://github.com/Evangelin-Ruth/Ex.No.1---Data-Preprocessing/assets/94219798/47af3797-5973-428c-82ea-8231174923e8)
+
+### Split values of y dataset
+![image](https://github.com/Evangelin-Ruth/Ex.No.1---Data-Preprocessing/assets/94219798/5caf7cd3-d30e-43e8-adb4-9633863a52a4)
+
+### Training the dataset
+![image](https://github.com/Evangelin-Ruth/Ex.No.1---Data-Preprocessing/assets/94219798/fb8a915f-8e39-40dd-b4fe-16b6d22219c9)
 
 ## RESULT
-/Type your result here/
+Thus the given data is been processed successfully.
+
